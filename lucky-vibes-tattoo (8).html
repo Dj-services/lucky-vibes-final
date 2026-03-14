@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucky Vibes Tattoo & Body Piercing | Laconia, NH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:    #080808;
+      --deep:     #0e0e0e;
+      --charcoal: #181818;
+      --grey:     #242424;
+      --mid:      #3a3a3a;
+      --silver:   #777;
+      --light:    #bdb8b0;
+      --white:    #ece8df;
+      --gold:     #c8a44a;
+      --gold-dim: #8a6e2e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 8000;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay; opacity: .5;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2.5rem; transition: background .3s;
+    }
+    nav.scrolled { background: rgba(8,8,8,.97); border-bottom: 1px solid var(--grey); }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem; letter-spacing: .18em; color: var(--gold); text-decoration: none;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--light); text-decoration: none;
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-call {
+      background: var(--gold) !important; color: var(--black) !important;
+      padding: .42rem 1.1rem !important; font-weight: 700 !important;
+    }
+    .nav-call:hover { background: var(--white) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--light); transition: .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; background: rgba(8,8,8,.99); z-index: 590;
+      flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--light); text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; letter-spacing: .1em;
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* HERO */
+    #hero {
+      position: relative; height: 100vh; min-height: 640px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(8,8,8,.4) 0%, rgba(8,8,8,.15) 35%, rgba(8,8,8,.92) 100%),
+        url('lucky.jpg') center/cover no-repeat;
+      animation: hzoom 22s ease-in-out infinite alternate;
+    }
+    @keyframes hzoom { from { transform: scale(1); } to { transform: scale(1.07); } }
+    #hero::before {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 100px;
+      background: var(--black);
+      clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%); z-index: 2;
+    }
+    .hero-content {
+      position: relative; z-index: 3;
+      text-align: center; padding: 0 1.5rem; max-width: 900px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid var(--gold-dim); color: var(--gold);
+      font-size: .68rem; letter-spacing: .38em; text-transform: uppercase;
+      padding: .3rem 1.1rem; margin-bottom: 1.6rem;
+      animation: fadeUp .7s ease both;
+    }
+    .hero-badge::before, .hero-badge::after { content: '★'; font-size: .6rem; }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 8.5rem);
+      line-height: .9; letter-spacing: .025em; color: var(--white);
+      animation: fadeUp .85s .1s ease both;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; display: block; font-size: .75em; }
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.2rem); font-weight: 300; font-style: italic;
+      color: var(--light); margin: 1.4rem 0 2.4rem; letter-spacing: .04em;
+      animation: fadeUp .85s .2s ease both;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeUp .85s .32s ease both; }
+    .btn-gold {
+      display: inline-block; background: var(--gold); color: var(--black);
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .18em;
+      padding: .9rem 2.6rem; text-decoration: none; border: 2px solid var(--gold);
+      transition: background .22s, color .22s, transform .18s;
+    }
+    .btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block; border: 1.5px solid rgba(255,255,255,.25); color: var(--light);
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .18em;
+      padding: .9rem 2.6rem; text-decoration: none;
+      transition: border-color .22s, color .22s, transform .18s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    .float-call {
+      display: none; position: fixed; bottom: 1.4rem; right: 1.4rem; z-index: 700;
+      background: var(--gold); color: var(--black);
+      font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .15em;
+      padding: .85rem 1.6rem; text-decoration: none; border-radius: 2px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.5);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { box-shadow: 0 4px 24px rgba(200,164,74,.3); } 50% { box-shadow: 0 4px 32px rgba(200,164,74,.6); } }
+
+    /* SHARED */
+    .section-label { font-size: .68rem; letter-spacing: .35em; text-transform: uppercase; color: var(--gold); margin-bottom: .65rem; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 5.5vw, 4.2rem); letter-spacing: .03em; line-height: .95; color: var(--white); }
+    .divider { width: 44px; height: 2px; background: var(--gold); margin: 1rem 0 1.8rem; }
+
+    /* STATS */
+    .stats-bar {
+      background: var(--charcoal); border-top: 1px solid var(--grey); border-bottom: 1px solid var(--grey);
+      display: flex; justify-content: center; flex-wrap: wrap;
+    }
+    .stat { padding: 1.8rem 3.5rem; text-align: center; border-right: 1px solid var(--grey); }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; letter-spacing: .05em; color: var(--gold); display: block; }
+    .stat-label { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--silver); }
+
+    /* ABOUT */
+    #about { background: var(--deep); padding: 7rem 2rem; }
+    .about-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .about-text p { font-size: 1.04rem; font-weight: 300; line-height: 1.88; color: var(--light); margin-bottom: 1.1rem; }
+    .about-img { position: relative; }
+    .about-img img { width: 100%; display: block; filter: contrast(1.05); }
+    .about-img::before {
+      content: ''; position: absolute; top: -10px; left: -10px; right: 10px; bottom: 10px;
+      border: 1.5px solid var(--gold-dim); z-index: -1;
+    }
+    .badge-row { display: flex; gap: .8rem; margin-top: 1.8rem; flex-wrap: wrap; }
+    .badge { border: 1px solid var(--mid); color: var(--silver); font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; padding: .35rem .9rem; }
+
+    /* SERVICES */
+    #services { background: var(--black); padding: 7rem 2rem; }
+    .services-inner { max-width: 1100px; margin: 0 auto; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1px; margin-top: 3rem; background: var(--grey);
+    }
+    .service-card {
+      background: var(--charcoal); padding: 2.8rem 2.2rem;
+      transition: background .25s; cursor: default; position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0;
+      background: var(--gold); transition: height .3s;
+    }
+    .service-card:hover { background: #1e1e1e; }
+    .service-card:hover::before { height: 100%; }
+    .service-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: rgba(200,164,74,.12); line-height: 1; margin-bottom: .8rem; }
+    .service-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: .06em; color: var(--white); margin-bottom: .55rem; }
+    .service-card p { font-size: .88rem; color: var(--silver); line-height: 1.72; font-weight: 300; }
+
+    /* GALLERY */
+    #gallery { background: var(--deep); padding: 7rem 2rem; }
+    .gallery-inner { max-width: 1200px; margin: 0 auto; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 320px 320px;
+      gap: 6px; margin-top: 3rem;
+    }
+    .gallery-item { position: relative; overflow: hidden; background: var(--charcoal); cursor: pointer; }
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .6s ease, filter .4s;
+      filter: brightness(.92) contrast(1.05);
+    }
+    .gallery-item:hover img { transform: scale(1.08); filter: brightness(1.05) contrast(1.1); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,.8) 0%, transparent 50%);
+      opacity: 0; transition: opacity .35s;
+      display: flex; align-items: flex-end; padding: 1.2rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.95); z-index: 900;
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none; color: var(--light); font-size: 2.5rem; cursor: pointer;
+    }
+    .lightbox-close:hover { color: var(--gold); }
+
+    /* CONTACT */
+    #contact { background: var(--black); padding: 8rem 2rem; position: relative; overflow: hidden; }
+    #contact::before {
+      content: 'LUCKY VIBES';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 16vw, 16rem);
+      color: rgba(255,255,255,.015); white-space: nowrap; pointer-events: none;
+      letter-spacing: .06em; user-select: none;
+    }
+    .contact-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-left p { font-size: 1.03rem; color: var(--light); font-weight: 300; line-height: 1.8; margin-bottom: 2rem; }
+    .contact-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-outline {
+      display: inline-block; border: 1.5px solid var(--mid); color: var(--light);
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: .18em;
+      padding: .85rem 2rem; text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .contact-right { display: flex; flex-direction: column; gap: 2rem; }
+    .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+    .contact-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border: 1px solid var(--grey); display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
+    .contact-item-label { font-size: .65rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
+    .contact-item-val { font-size: .97rem; color: var(--light); font-weight: 300; line-height: 1.6; }
+    .contact-item-val a { color: var(--light); text-decoration: none; transition: color .2s; }
+    .contact-item-val a:hover { color: var(--gold); }
+
+    /* FOOTER */
+    footer { background: var(--deep); border-top: 1px solid var(--grey); padding: 2rem; text-align: center; }
+    footer p { font-size: .78rem; color: var(--mid); letter-spacing: .07em; }
+    footer span { color: var(--gold-dim); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: auto; }
+      .gallery-item.tall { grid-row: span 1; }
+      .gallery-item { height: 280px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.4rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .float-call { display: block; }
+      .stat { padding: 1.4rem 2rem; border-right: none; border-bottom: 1px solid var(--grey); width: 50%; }
+    }
+    @media (max-width: 520px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Lucky Vibes</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+16035249907" class="nav-call">&#9742; Call Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="tel:+16035249907" style="color:var(--gold)">&#9742; Call Now</a>
+</div>
+
+<a href="tel:+16035249907" class="float-call">&#9742; Call Now</a>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Laconia, New Hampshire</div>
+    <h1 class="hero-title">
+      Lucky Vibes
+      <em>Tattoo &amp; Body Piercing</em>
+    </h1>
+    <p class="hero-sub">Custom Tattoos &amp; Piercings in the Lakes Region of NH</p>
+    <div class="hero-btns">
+      <a href="tel:+16035249907" class="btn-gold">&#9742;&nbsp; Call Now</a>
+      <a href="#gallery" class="btn-ghost">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat reveal"><span class="stat-num">10+</span><span class="stat-label">Years in Business</span></div>
+  <div class="stat reveal"><span class="stat-num">1000+</span><span class="stat-label">Tattoos Done</span></div>
+  <div class="stat reveal"><span class="stat-num">5★</span><span class="stat-label">Rated Studio</span></div>
+  <div class="stat reveal"><span class="stat-num">Walk-Ins</span><span class="stat-label">Always Welcome</span></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <p class="section-label">Who We Are</p>
+      <h2 class="section-title">Laconia's Home<br>For Custom Ink</h2>
+      <div class="divider"></div>
+      <p>Lucky Vibes Tattoo &amp; Body Piercing is a local tattoo studio proudly serving the Lakes Region of New Hampshire. We specialize in custom tattoos and professional body piercings in a friendly, clean, and welcoming environment.</p>
+      <p>Whether it's your first tattoo or your twentieth, our artists take the time to listen, collaborate, and create artwork that is truly one of a kind — craftsmanship you'll be proud to wear for life.</p>
+      <div class="badge-row">
+        <span class="badge">Walk-Ins Welcome</span>
+        <span class="badge">Laconia, NH</span>
+        <span class="badge">Lakes Region</span>
+      </div>
+      <p style="margin-top:2rem;">
+        <a href="tel:+16035249907" class="btn-gold" style="font-size:.94rem; padding:.78rem 2rem;">&#9742;&nbsp; Call to Book</a>
+      </p>
+    </div>
+    <div class="about-img reveal">
+      <img src="luck3.jpg" alt="Lucky Vibes artist at work" />
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-inner">
+    <p class="section-label reveal">What We Do</p>
+    <h2 class="section-title reveal">Our Services</h2>
+    <div class="divider reveal"></div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <h3>Custom Tattoos</h3>
+        <p>One-of-a-kind designs created just for you — from bold traditional pieces to detailed portraits, we bring your vision to life.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <h3>Fine Line Tattoos</h3>
+        <p>Delicate, precise linework with exceptional detail. Perfect for minimalist designs, florals, and intricate patterns.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <h3>Body Piercings</h3>
+        <p>Safe, professional piercings using implant-grade jewelry. Ears, nose, septum, cartilage, and more.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <h3>Tattoo Consultations</h3>
+        <p>Sit down with one of our artists to discuss your ideas, placement, sizing, and style before any commitment is made.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-inner">
+    <p class="section-label reveal">Our Work</p>
+    <h2 class="section-title reveal">Gallery</h2>
+    <div class="divider reveal"></div>
+    <div class="gallery-grid">
+
+      <div class="gallery-item tall reveal" onclick="openLightbox('lucky.jpg')">
+        <img src="lucky.jpg" alt="Lucky Vibes shop interior" />
+        <div class="gallery-overlay"><span>The Shop</span></div>
+      </div>
+
+      <div class="gallery-item reveal" onclick="openLightbox('luck1.jpg')">
+        <img src="luck1.jpg" alt="Barber pole traditional tattoo" />
+        <div class="gallery-overlay"><span>Traditional Color</span></div>
+      </div>
+
+      <div class="gallery-item reveal" onclick="openLightbox('luck2.jpg')">
+        <img src="luck2.jpg" alt="Cherry blossom sleeve" />
+        <div class="gallery-overlay"><span>Floral Sleeve</span></div>
+      </div>
+
+      <div class="gallery-item reveal" onclick="openLightbox('luck3w.jpg')">
+        <img src="luck3w.jpg" alt="Wolf and dagger tattoo" />
+        <div class="gallery-overlay"><span>Bold Color Work</span></div>
+      </div>
+
+      <div class="gallery-item reveal" onclick="openLightbox('luck3.jpg')">
+        <img src="luck3.jpg" alt="Artist at work" />
+        <div class="gallery-overlay"><span>Artist at Work</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <p class="section-label">Come See Us</p>
+        <h2 class="section-title">Ready to Get<br>Inked?</h2>
+        <div class="divider"></div>
+        <p>Walk-ins are always welcome. Call or email ahead to schedule time with one of our artists — we'd love to hear your ideas.</p>
+        <div class="contact-btns">
+          <a href="tel:+16035249907" class="btn-gold">&#9742;&nbsp; Call Now</a>
+          <a href="mailto:luckyvibestattooinc@gmail.com" class="btn-outline">Email Us</a>
+          <a href="https://maps.google.com/?q=666+Main+St+Laconia+NH+03246" target="_blank" rel="noopener" class="btn-outline">Directions</a>
+        </div>
+      </div>
+      <div class="contact-right reveal">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-val">666 Main St<br>Laconia, NH 03246</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3-8.59A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-val"><a href="tel:+16035249907">(603) 524-9907</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val"><a href="mailto:luckyvibestattooinc@gmail.com">luckyvibestattooinc@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Hours</div>
+            <div class="contact-item-val">Mon – Sat: 11am – 8pm<br>Sun: 12pm – 6pm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 <span>Lucky Vibes Tattoo &amp; Body Piercing</span> &mdash; 666 Main St, Laconia, NH 03246 &mdash; <a href="tel:+16035249907" style="color:var(--gold-dim);text-decoration:none;">(603) 524-9907</a></p>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
